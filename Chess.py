@@ -27,26 +27,7 @@ white = (255,255,255)
 odd = 0,1,0,1,0,1,0,1
 even = 1,0,1,0,1,0,1,0
 grid = [odd, even, odd, even, odd, even, odd, even]
-#print(grid)
 
-#def imageb(x,y):
-#    screen.blit(gpb,(int(x),int(y)))
-#def imagew(x,y):
-#    screen.blit(gpw,(int(x),int(y)))
-
-#def movableImg():
-#    global drag,x,y
-#    mouse = pg.mouse.get_pos()
-#    click = pg.mouse.get_pressed()
-    #imageb(x,y)
-    #imagew(x,y)
-#    if click[0] == 0:
-#        drag = 0
-#    if click[0] == 1 and x + l > mouse[0] > x and y + l > mouse[1] > y:
-#        drag = 1
-#    if drag == 1:
-#        x = mouse[0] - (l/2)
-#        y = mouse[1] - (l/2)
 
 
 state = "START"
@@ -61,12 +42,13 @@ while running:
                 pg.draw.rect(screen, color, pg.Rect(c*l+m+k,r*l+m+k,l-m,l-m))
 
         # Draw Game Piece
-        #screen.blit(gpb,pg.Rect(0*l+m+k,7*l+m+k,l-m,l-m))
-        for i in range(1):
-            startb1*i = (i*l+m+k,m+k)
+        for i in range(8):
+            startb = [i*l+m+k,m+k]
             black_pieces.append(startb)
             for i in black_pieces:
                 screen.blit(gpb,(startb[0],startb[1]))
+        print(black_pieces)
+        print(black_pieces[0][0])
 
         for i in range(8):
             startw = (i*l+m+k,7*l+m+k)
@@ -92,15 +74,16 @@ while running:
             global drag,startb
             mouse = pg.mouse.get_pos()
             click = pg.mouse.get_pressed()
-            startb
-            #startw
             if click[0] == 0:
                 drag = 0
             if click[0] == 1 and black_pieces[0][0] + l > mouse[0] > black_pieces[0][0] and black_pieces[0][1] + l > mouse[1] > black_pieces[0][1]:
+            #if click[0] == 1 and b0[0] + l > mouse[0] > b0[0] and b0[1] + l > mouse[1] > b0[1]:
                 drag = 1
             if drag == 1:
-                black_pieces[0][0] = mouse[0] - (l/2)
-                black_pieces[0][1] = mouse[1] - (l/2)
+                black_pieces[0] = [(mouse[0] - (l/2)), black_pieces[0][1]]
+                #black_pieces[0][1] = mouse[1] - (l/2)
+                print("Black", black_pieces[0])
+                print("Mouse", mouse[0] - (l-2))
 
         
 
